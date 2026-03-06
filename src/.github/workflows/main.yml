@@ -39,22 +39,24 @@ jobs:
          - PHP_VERSION: '7.4'
            PHP_VERSION_FULL: 7.4.30
          - PHP_VERSION: '8.0'
-           PHP_VERSION_FULL: 8.0.22
+           PHP_VERSION_FULL: 8.0.30
          - PHP_VERSION: '8.0'
-           PHP_VERSION_FULL: 8.0.22
+           PHP_VERSION_FULL: 8.0.30
            DOCKER_ARCHITECTURE: i386
          - PHP_VERSION: '8.1'
-           PHP_VERSION_FULL: 8.1.11
-         - PHP_VERSION: '8.2.0RC5'
-           PHP_VERSION_FULL: 8.2.0RC5
-         - PHP_VERSION: '8.2.0RC5'
-           PHP_VERSION_FULL: 8.2.0RC5
+           PHP_VERSION_FULL: 8.1.26
+         - PHP_VERSION: '8.2'
+           PHP_VERSION_FULL: 8.2.13
+         - PHP_VERSION: '8.2'
+           PHP_VERSION_FULL: 8.2.13
            DOCKER_ARCHITECTURE: i386
+         - PHP_VERSION: '8.3.0'
+           PHP_VERSION_FULL: 8.3.0
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
       - name: Build and test in docker
@@ -66,7 +68,8 @@ jobs:
       #
       # We need to install valgrind then rebuild php from source with the configure option '--with-valgrind' to avoid valgrind false positives
       # because php-src has inline assembly that causes false positives in valgrind when that option isn't used.
+      # The OS release in the PHP 7.0 image is too old to install valgrind without workarounds: https://stackoverflow.com/questions/76094428/debian-stretch-repositories-404-not-found
       - name: Build and test in docker again with valgrind
-        run: bash ci/test_dockerized_valgrind.sh ${{ matrix.PHP_VERSION }} ${{ matrix.PHP_VERSION_FULL }} ${{ matrix.DOCKER_ARCHITECTURE }}
+        run: if [[ ${{ matrix.PHP_VERSION }} != '7.0' ]]; then bash ci/test_dockerized_valgrind.sh ${{ matrix.PHP_VERSION }} ${{ matrix.PHP_VERSION_FULL }} ${{ matrix.DOCKER_ARCHITECTURE }}; fi
       # NOTE: tests report false positives for zend_string_equals in php 7.3+
       # due to the use of inline assembly in php-src. (not related to igbinary)

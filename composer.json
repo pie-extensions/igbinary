@@ -2,7 +2,7 @@
     "name": "pie-extensions/igbinary",
     "description": "PIE-compatible mirror of igbinary/igbinary",
     "type": "php-ext",
-    "version": "3.2.14",
+    "version": "3.2.15",
     "require": {
         "php": ">=8.2"
     },
