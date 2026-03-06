@@ -17,7 +17,15 @@
         ],
         "php-version-constraints": [
             {
-                "ext-versions": "*",
+                "ext-versions": "<=3.2.16",
+                "php-versions": [
+                    "8.2",
+                    "8.3",
+                    "8.4"
+                ]
+            },
+            {
+                "ext-versions": ">3.2.16",
                 "php-versions": [
                     "8.2",
                     "8.3",
