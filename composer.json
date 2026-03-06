@@ -1,16 +1,21 @@
 {
-    "name": "pie-extensions/EXTENSION_NAME",
-    "description": "PIE-compatible mirror of UPSTREAM_OWNER/UPSTREAM_REPO",
+    "name": "pie-extensions/igbinary",
+    "description": "PIE-compatible mirror of igbinary/igbinary",
     "type": "php-ext",
     "version": "0.0.0",
     "require": {
         "php": ">=8.1"
     },
     "php-ext": {
-        "extension-name": "EXTENSION_NAME",
-        "configure-options": []
+        "extension-name": "igbinary",
+        "configure-options": [],
+        "build-path": "src",
+        "download-url-method": [
+            "pre-packaged-binary",
+            "composer-default"
+        ]
     },
     "support": {
-        "source": "https://github.com/pie-extensions/EXTENSION_NAME"
+        "source": "https://github.com/pie-extensions/igbinary"
     }
 }
