@@ -65,6 +65,7 @@ jobs:
         uses: pie-extensions/mirror-action@v1
         with:
           mode: build
+          configure-flags: 'CFLAGS="-O2 -g" --enable-igbinary'
           release-tag: ${{ needs.check.outputs.release-tag }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           build-path: ${{ needs.check.outputs.build-path }}
