@@ -5,6 +5,10 @@
     },
     "php_ext_name": "igbinary",
     "source_dir": "src/",
+    "sync": {
+        "prereleases": true,
+        "initial-versions": 3
+    },
     "build": {
         "enabled": true,
         "os": [
@@ -17,7 +21,15 @@
         ],
         "php-version-constraints": [
             {
-                "ext-versions": "*",
+                "ext-versions": "<=3.2.16",
+                "php-versions": [
+                    "8.2",
+                    "8.3",
+                    "8.4"
+                ]
+            },
+            {
+                "ext-versions": ">3.2.16",
                 "php-versions": [
                     "8.2",
                     "8.3",
